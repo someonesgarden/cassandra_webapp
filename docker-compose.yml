@@ -1,0 +1,22 @@
+
+sog_cassandra_term:
+    build: .
+    ports:
+        - "5000:5000"
+        - "9000:9000"
+    environment:
+        ENV: DEV
+    volumes:
+        - ./app:/app
+    links:
+        - dnmonster
+        - redis
+
+cassandra:
+    image: someonesgarden/cassandra_cluster:latest
+
+dnmonster:
+    image: amouat/dnmonster:1.0
+
+redis:
+    image: redis:3.0
